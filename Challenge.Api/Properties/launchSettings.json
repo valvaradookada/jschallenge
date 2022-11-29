@@ -1,0 +1,25 @@
+﻿{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:41917",
+      "sslPort": 44312
+    }
+  },
+  "profiles": {
+    "Challenge.Api": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7183;http://localhost:5089",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "RabbitMqUri": "localhost",
+        "RabbitMqVirtualHost": "/",
+        "RabbitMqUser": "guest",
+        "RabbitMqPassword": "guest"
+        }
+    }
+  }
+}

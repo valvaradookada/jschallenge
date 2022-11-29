@@ -1,0 +1,95 @@
+﻿@page
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-2">User</div>
+        <div class="col-4"><input type="text" id="userInput" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Message</div>
+        <div class="col-4"><input type="text" id="messageInput" /></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul id="messagesList"></ul>
+    </div>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+"use strict";
+
+//var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+var connection = new signalR.HubConnectionBuilder().withUrl("@Environment.GetEnvironmentVariable("ChatApiUrl")/chatHub").build();
+//Disable the send button until connection is established.
+document.getElementById("sendButton").disabled = true;
+
+connection.on("ReceiveMessage", function (user, message) {
+    var li = document.createElement("li");
+    document.getElementById("messagesList").appendChild(li);
+    // We can assign user-supplied strings to an element's textContent because it
+    // is not interpreted as markup. If you're assigning in any other way, you 
+    // should be aware of possible script injection concerns.
+    li.textContent = `${user} : ${message}`;
+});
+
+connection.start().then(function () {
+    var data;
+    jQuery.ajax({
+        type: 'GET',
+        url: '@Environment.GetEnvironmentVariable("ChatApiUrl")/chat/previousmessages',
+        data: data, 
+        dataType: 'json', // ** ensure you add this line **
+        success: function(data) {
+            console.log(data);
+            jQuery.each(data, function(index, item) {
+                var li = document.createElement("li");
+                document.getElementById("messagesList").appendChild(li);
+                li.textContent = `${item.user} : ${item.message}`;
+                console.log(item);
+            });
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error");
+        }
+    });
+    document.getElementById("sendButton").disabled = false;
+}).catch(function (err) {
+    return console.error(err.toString());
+});
+
+document.getElementById("sendButton").addEventListener("click", function (event) {
+    var user = document.getElementById("userInput").value;
+    var message = document.getElementById("messageInput").value;
+    var data = JSON.stringify({
+        "User": user,
+        "Message": message
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4) {
+            console.log(this.responseText);
+        }
+    });
+
+    xhr.open("POST", "@Environment.GetEnvironmentVariable("ChatApiUrl")/chat/receivemessage");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.send(data);
+    event.preventDefault();
+});
+</script>
