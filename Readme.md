@@ -14,13 +14,31 @@ Challenge.StockBot and Challenge.Api projects are already configured to use a ra
 
 This project is the backend Api for the chat, It should be able to connect to the RabbitMq instance, the launchSettings.json file is already configured to work with the RabbitMq instance from step 1, edit the values if needed. Start the project with Visual Studio or Jetbrains Rider
 
+To run the project from the command line, execute this command ( from within the folder containing Jobsity.Challenge.sln file ) 
+
+`
+dotnet run --project ./Challenge.Api/Challenge.Api.csproj --launch-profile Challenge.Api
+`
+
 ## 1.3 Start Challenge.StockBot project
 
 This project handle the logic to get stock prices. It should be able to connect to the RabbitMq instance, the launchSettings.json file is already configured to work with the RabbitMq instance from step 1, edit the values if needed. Start the project with Visual Studio or Jetbrains Rider
 
+To run the project from the command line, execute this command ( from within the folder containing Jobsity.Challenge.sln file )
+
+`
+dotnet run --project ./Challenge.StockBot/Challenge.StockBot.csproj --launch-profile Challenge.StockBot
+`
+
 ## 1.4 Start Challenge.WebClient project
 
 This project is the chat web client. It should be able to connect to the backend Api, the launchSettings.json file is already configured to reference the backend url. Start the project with Visual Studio or Jetbrains Rider
+
+To run the project from the command line, execute this command ( from within the folder containing Jobsity.Challenge.sln file )
+
+`
+dotnet run --project ./Challenge.WebClient/Challenge.WebClient.csproj --launch-profile Challenge.WebClient
+`
 
 Navigate this url to access [chat webclient](https://localhost:7180)
 

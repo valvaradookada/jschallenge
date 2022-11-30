@@ -53,6 +53,7 @@ public class ChatService : IChatService
 
     public async Task<List<ChatMessage>> GetPreviousMessages()
     {
+        //Todo: Max amount of messages should be read from environment variables
         var result = await _chatDbContext.ChatMessages.AsNoTracking()
             .OrderByDescending(message => message.ReceivedDateTime).Take(50)
             .OrderBy(message => message.ReceivedDateTime).ToListAsync();

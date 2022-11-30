@@ -10,12 +10,7 @@ using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
-/*ConfigurationManager configuration = builder.Configuration;
-var rabbitMQSection = configuration.GetSection("RabbitMQ");
-var rabbitMqUri = rabbitMQSection["RabbitMqUri"];
-var rabbitMqVirtualHost = rabbitMQSection["RabbitMqVirtualHost"];
-var rabbitMqUser = rabbitMQSection["RabbitMqUser"];
-var rabbitMqPassword = rabbitMQSection["RabbitMqPassword"];*/
+
 var rabbitMqUri = builder.Configuration["RabbitMqUri"] ??
                   throw new ArgumentNullException("Configuration[\"RabbitMqUri\"]");
 var rabbitMqVirtualHost = builder.Configuration["RabbitMqVirtualHost"] ??
