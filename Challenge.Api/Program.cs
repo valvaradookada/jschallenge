@@ -19,6 +19,8 @@ var rabbitMqUser = builder.Configuration["RabbitMqUser"] ??
                    throw new ArgumentNullException("Configuration[\"RabbitMqUser\"]");
 var rabbitMqPassword = builder.Configuration["RabbitMqPassword"] ??
                        throw new ArgumentNullException("Configuration[\"RabbitMqPassword\"]");
+var webClientUrl = builder.Configuration["webClientUrl"] ??
+                       throw new ArgumentNullException("Configuration[\"webClientUrl\"]");
 
 // Add services to the container.
 
@@ -31,7 +33,7 @@ builder.Services.AddSignalR();
 builder.Services.AddCors(o => o.AddPolicy("WebClientCorsPolicy", builder =>
 {
     builder.SetIsOriginAllowed((host) => true)
-        .WithOrigins("https://localhost:7180")
+        .WithOrigins(webClientUrl)
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials();

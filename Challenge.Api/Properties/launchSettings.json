@@ -18,7 +18,8 @@
         "RabbitMqUri": "localhost",
         "RabbitMqVirtualHost": "/",
         "RabbitMqUser": "guest",
-        "RabbitMqPassword": "guest"
+        "RabbitMqPassword": "guest",
+        "webClientUrl": "https://localhost:7180"
         }
     }
   }

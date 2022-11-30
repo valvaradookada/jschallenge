@@ -44,6 +44,7 @@ Navigate this url to access [chat webclient](https://localhost:7180)
 
 # 2. TODO List
 
+- Add business and data type validations to controllers and methods
 - Add more Unit testing cases
 - Add Authentication
 - Centralize logging and monitoring
