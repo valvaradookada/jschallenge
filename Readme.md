@@ -12,15 +12,33 @@ Challenge.StockBot and Challenge.Api projects are already configured to use a ra
 
 ## 1.2 Start Challenge.Api project
 
-//TODO: Add instructions
+This project is the backend Api for the chat, It should be able to connect to the RabbitMq instance, the launchSettings.json file is already configured to work with the RabbitMq instance from step 1, edit the values if needed. Start the project with Visual Studio or Jetbrains Rider
 
 ## 1.3 Start Challenge.StockBot project
 
-//TODO: Add instructions
+This project handle the logic to get stock prices. It should be able to connect to the RabbitMq instance, the launchSettings.json file is already configured to work with the RabbitMq instance from step 1, edit the values if needed. Start the project with Visual Studio or Jetbrains Rider
 
 ## 1.4 Start Challenge.WebClient project
 
-//TODO: Add instructions
+This project is the chat web client. It should be able to connect to the backend Api, the launchSettings.json file is already configured to reference the backend url. Start the project with Visual Studio or Jetbrains Rider
+
+Navigate this url to access [chat webclient](https://localhost:7180)
 
 # 2. TODO List
 
+- Unit testing
+- Authentication
+- Centralized logging and monitoring
+- Swagger documentation
+
+# 3. Features Implemented
+
+- [X] Allow registered users to log in and talk with other users in a chatroom.
+- [X] Allow users to post messages as commands into the chatroom with the following format /stock=stock_code
+- [X] Create a decoupled bot that will call an API using the stock_code as a parameter (https://stooq.com/q/l/?s=aapl.us&f=sd2t2ohlcv&h&e=csv, here aapl.us is the  stock_code)
+- [X] The bot should parse the received CSV file and then it should send a message back into the chatroom using a message broker like RabbitMQ. The message will be a stock quote using the following format: “APPL.US quote is $93.42 per share”. The post owner will be the bot.
+- [X] Have the chat messages ordered by their timestamps and show only the last 50 messages.
+- [ ] Unit test the functionality you prefer.
+# 4. Design Considerations
+
+[Click here to view the design considerations for the solution](https://github.com/valvaradookada/jschallenge/wiki/Design-Considerations)
