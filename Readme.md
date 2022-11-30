@@ -44,10 +44,11 @@ Navigate this url to access [chat webclient](https://localhost:7180)
 
 # 2. TODO List
 
-- Unit testing
-- Authentication
-- Centralized logging and monitoring
-- Swagger documentation
+- Add more Unit testing cases
+- Add Authentication
+- Centralize logging and monitoring
+- Add observability/health checks
+- Add Swagger documentation for Api
 
 # 3. Features Implemented
 
@@ -56,7 +57,7 @@ Navigate this url to access [chat webclient](https://localhost:7180)
 - [X] Create a decoupled bot that will call an API using the stock_code as a parameter (https://stooq.com/q/l/?s=aapl.us&f=sd2t2ohlcv&h&e=csv, here aapl.us is the  stock_code)
 - [X] The bot should parse the received CSV file and then it should send a message back into the chatroom using a message broker like RabbitMQ. The message will be a stock quote using the following format: “APPL.US quote is $93.42 per share”. The post owner will be the bot.
 - [X] Have the chat messages ordered by their timestamps and show only the last 50 messages.
-- [ ] Unit test the functionality you prefer.
+- [X] Unit test the functionality you prefer.
 # 4. Design Considerations
 
 [Click here to view the design considerations for the solution](https://github.com/valvaradookada/jschallenge/wiki/Design-Considerations)
